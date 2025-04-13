@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Clinic, Hospital
+from medcare.landingpage.models import User, Clinic, Hospital
 
 # User Signup Form
 class UserSignupForm(forms.ModelForm):

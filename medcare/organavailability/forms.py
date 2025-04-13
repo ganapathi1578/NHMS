@@ -1,6 +1,6 @@
 from django import forms
-from .models import Organ
-from landingpage.models import Hospital
+from medcare.organavailability.models import Organ
+from medcare.landingpage.models import Hospital
 
 class OrganDonationForm(forms.ModelForm):
     hospital = forms.ModelChoiceField(

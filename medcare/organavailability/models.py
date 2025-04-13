@@ -1,6 +1,6 @@
 import random
 from django.db import models
-from landingpage.models import Hospital
+from medcare.landingpage.models import Hospital
 from django import forms
 
 

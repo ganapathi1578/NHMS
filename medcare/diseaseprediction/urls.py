@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import predict_cataract, home_diseaseprediction
-from .views import *
+from medcare.diseaseprediction.views import *
 from django.conf.urls.static import static
 
 

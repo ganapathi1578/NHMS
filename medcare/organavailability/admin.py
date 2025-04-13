@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Organ
+from medcare.organavailability.models import Organ
 
 # Register your models here.
 

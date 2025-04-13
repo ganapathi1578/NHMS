@@ -20,10 +20,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('landingpage.urls')),
-    path('homeremedies/',include('homeremedies.urls')),
-    path('organavailability/', include('organavailability.urls')),
-    path('diseaseprediction/', include('diseaseprediction.urls')),
+    path('', include('medcare.landingpage.urls')),
+    path('homeremedies/',include('medcare.homeremedies.urls')),
+    path('organavailability/', include('medcare.organavailability.urls')),
+    path('diseaseprediction/', include('medcare.diseaseprediction.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
