@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==3.0"
 osmnx = "*"
 networkx = "*"
 matplotlib = "*"
@@ -17,6 +16,10 @@ celery = "*"
 django-q = "*"
 opencv-python = "*"
 gunicorn = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
+whitenoise = "*"
+django = "==3.1"
 
 [dev-packages]
 

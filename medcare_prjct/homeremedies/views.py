@@ -11,16 +11,24 @@ from medcare.decorators import login_required_redirect
 
 
 import csv
+import os
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 def load_data():
     data = []
-    csv_file_path = r"C:\Users\GANAPATHI\Desktop\NIT\project\ymhhacakthon\medcare\data\ram_remedy(1).csv"
-    with open(csv_file_path, newline='', encoding='Windows-1252') as file:
-        reader = csv.reader(file)
-        data = list(reader)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_file_path = os.path.join(base_dir, 'data', 'ram_remedy(1).csv')
+    #csv_file_path = r"C:\Users\GANAPATHI\Desktop\NIT\project\ymhhacakthon\medcare_prjct\data\ram_remedy(1).csv"
+    print('dataloaded')
+    try:
+        with open(csv_file_path, newline='', encoding='Windows-1252') as file:
+            reader = csv.reader(file)
+            data = list(reader)
+    except Exception as e:
+        print("Error opening or reading the file:", e)
+    
     return data
 
 def get_remedies_for_prompt(prompt):
