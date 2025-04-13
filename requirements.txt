@@ -1,57 +1,68 @@
--i https://pypi.org/simple
-amqp==5.3.1; python_version >= '3.6'
-ansicon==1.89.0; platform_system == 'Windows'
-arrow==1.3.0; python_version >= '3.8'
-asgiref==3.8.1; python_version >= '3.8'
-attrs==25.3.0; python_version >= '3.8'
-billiard==4.2.1; python_version >= '3.7'
-blessed==1.20.0; python_version >= '2.7'
-celery==5.4.0; python_version >= '3.8'
-certifi==2025.1.31; python_version >= '3.6'
-charset-normalizer==3.4.1; python_version >= '3.7'
-click==8.1.8; python_version >= '3.7'
-click-didyoumean==0.3.1; python_full_version >= '3.6.2'
+amqp==5.3.1
+ansicon==1.89.0
+arrow==1.3.0
+asgiref==3.8.1
+attrs==25.3.0
+billiard==4.2.1
+blessed==1.20.0
+celery==5.4.0
+certifi==2025.1.31
+charset-normalizer==3.4.1
+click==8.1.8
+click-didyoumean==0.3.1
 click-plugins==1.1.1
-click-repl==0.3.0; python_version >= '3.6'
-cligj==0.7.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2' and python_version < '4'
-colorama==0.4.6; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6'
-contourpy==1.3.1; python_version >= '3.10'
-cycler==0.12.1; python_version >= '3.8'
-django==3.0; python_version >= '3.6'
-django-picklefield==3.0.1; python_version >= '3'
-django-q==1.3.9; python_full_version >= '3.6.2' and python_version < '4'
-fiona==1.10.1; python_version >= '3.8'
-fonttools==4.56.0; python_version >= '3.8'
-geopandas==1.0.1; python_version >= '3.9'
-idna==3.10; python_version >= '3.6'
-jinxed==1.3.0; platform_system == 'Windows'
-joblib==1.4.2; python_version >= '3.8'
-kiwisolver==1.4.8; python_version >= '3.10'
-kombu==5.5.1; python_version >= '3.8'
-matplotlib==3.10.1; python_version >= '3.10'
-networkx==3.4.2; python_version >= '3.10'
-numpy==2.2.4; python_version >= '3.10'
-opencv-python==4.11.0.86; python_version >= '3.6'
-osmnx==2.0.1; python_version >= '3.9'
-packaging==24.2; python_version >= '3.8'
-pandas==2.2.3; python_version >= '3.9'
-pillow==11.1.0; python_version >= '3.9'
-prompt-toolkit==3.0.50; python_full_version >= '3.8.0'
-pyogrio==0.10.0; python_version >= '3.9'
-pyparsing==3.2.3; python_version >= '3.9'
-pyproj==3.7.1; python_version >= '3.10'
-python-dateutil==2.9.0.post0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'
+click-repl==0.3.0
+cligj==0.7.2
+colorama==0.4.6
+contourpy==1.3.1
+cycler==0.12.1
+Django==3.0
+django-picklefield==3.0.1
+django-q==1.3.9
+filelock==3.13.1
+fiona==1.10.1
+fonttools==4.56.0
+fsspec==2024.6.1
+geopandas==1.0.1
+gunicorn==23.0.0
+idna==3.10
+Jinja2==3.1.4
+jinxed==1.3.0
+joblib==1.4.2
+kiwisolver==1.4.8
+kombu==5.5.1
+MarkupSafe==2.1.5
+matplotlib==3.10.1
+mpmath==1.3.0
+networkx==3.4.2
+numpy==2.2.4
+opencv-python==4.11.0.86
+osmnx==2.0.1
+packaging==24.2
+pandas==2.2.3
+pillow==11.1.0
+prompt_toolkit==3.0.50
+pyogrio==0.10.0
+pyparsing==3.2.3
+pyproj==3.7.1
+python-dateutil==2.9.0.post0
 pytz==2025.2
-redis==3.5.3; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
-requests==2.32.3; python_version >= '3.8'
-scikit-learn==1.6.1; python_version >= '3.9'
-scipy==1.15.2; python_version >= '3.10'
-shapely==2.0.7; python_version >= '3.7'
-six==1.17.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'
-sqlparse==0.5.3; python_version >= '3.8'
-threadpoolctl==3.6.0; python_version >= '3.9'
-types-python-dateutil==2.9.0.20241206; python_version >= '3.8'
-tzdata==2025.2; python_version >= '2'
-urllib3==2.3.0; python_version >= '3.9'
-vine==5.1.0; python_version >= '3.6'
+redis==3.5.3
+requests==2.32.3
+scikit-learn==1.6.1
+scipy==1.15.2
+setuptools==77.0.3
+shapely==2.0.7
+six==1.17.0
+sqlparse==0.5.3
+sympy==1.13.1
+threadpoolctl==3.6.0
+torch==2.6.0+cu124
+torchaudio==2.6.0+cu124
+torchvision==0.21.0+cu124
+types-python-dateutil==2.9.0.20241206
+typing_extensions==4.12.2
+tzdata==2025.2
+urllib3==2.3.0
+vine==5.1.0
 wcwidth==0.2.13
