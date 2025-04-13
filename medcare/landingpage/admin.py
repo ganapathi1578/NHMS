@@ -1,9 +1,9 @@
 from django.contrib import admin
-from medcare.landingpage.models import User, Clinic, Hospital
+from landingpage.models import User, Clinic, Hospital
 
 # Register your models here.
 from django.contrib import admin
-from medcare.landingpage.models import User, Clinic, Hospital
+from landingpage.models import User, Clinic, Hospital
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):

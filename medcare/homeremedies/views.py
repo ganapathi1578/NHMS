@@ -5,7 +5,7 @@ from django.shortcuts import render
     return render(request, 'homeremedies/home_homeremedies.html')
 """
 from django.shortcuts import render
-from medcare.homeremedies.models import BodyPart, Disease, Remedy
+from homeremedies.models import BodyPart, Disease, Remedy
 from medcare.decorators import login_required_redirect
 
 

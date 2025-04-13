@@ -1,5 +1,5 @@
 from django.urls import path
-from medcare.homeremedies.views import *
+from homeremedies.views import *
 urlpatterns = [
     path('',home_remedies_view, name='home_homeremedies'),
     path('diseases/<int:bodypart_id>/', diseases_view, name='diseases'),

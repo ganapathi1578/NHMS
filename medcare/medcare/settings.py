@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5=wogy4fq=@+7tq2341ba^w-^x@55_6$ghce(_s(5*!#%5(-k2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'django_q',
     'landingpage.apps.LandingpageConfig',
     'organavailability.apps.OrganavailabilityConfig',
     'diseaseprediction.apps.DiseasepredictionConfig',

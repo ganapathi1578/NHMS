@@ -9,7 +9,7 @@ from django.urls import reverse
 import os
 import shutil
 from django.conf import settings
-from medcare.diseaseprediction.forms import DiabetesInputForm, AIDsInputForm
+from diseaseprediction.forms import DiabetesInputForm, AIDsInputForm
 import random, cv2
 from django.core.files.base import ContentFile
 from io import BytesIO

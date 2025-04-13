@@ -1,5 +1,5 @@
 from django.contrib import admin
-from medcare.homeremedies.models import BodyPart, Disease, Remedy
+from homeremedies.models import BodyPart, Disease, Remedy
 
 @admin.register(BodyPart)
 class BodyPartAdmin(admin.ModelAdmin):

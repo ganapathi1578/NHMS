@@ -2,15 +2,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
-from medcare.landingpage.forms import UserSignupForm, ClinicSignupForm, HospitalSignupForm
-from medcare.landingpage.models import User, Clinic, Hospital
+from landingpage.forms import UserSignupForm, ClinicSignupForm, HospitalSignupForm
+from landingpage.models import User, Clinic, Hospital
 from django.middleware.csrf import get_token
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
-from medcare.landingpage.forms import UserSignupForm, ClinicSignupForm, HospitalSignupForm, LoginForm
-from medcare.landingpage.models import User, Clinic, Hospital
+from landingpage.forms import UserSignupForm, ClinicSignupForm, HospitalSignupForm, LoginForm
+from landingpage.models import User, Clinic, Hospital
 from medcare.decorators import login_required_redirect
 
 

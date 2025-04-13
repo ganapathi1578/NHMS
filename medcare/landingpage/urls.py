@@ -1,5 +1,5 @@
 from django.urls import path
-from medcare.landingpage.views import choose_account, user_signup, clinic_signup, hospital_signup, login_view, logout_view, home, services, about, profile_view
+from landingpage.views import choose_account, user_signup, clinic_signup, hospital_signup, login_view, logout_view, home, services, about, profile_view
 
 urlpatterns = [
     path("", home, name="home"),

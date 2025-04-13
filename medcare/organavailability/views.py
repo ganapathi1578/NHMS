@@ -1,22 +1,22 @@
 from django.shortcuts import render, redirect, HttpResponse
-from medcare.organavailability.forms import OrganDonationForm, OrganSearchForm
-from medcare.landingpage.models import Hospital  # Import Hospital model
-from medcare.organavailability.models import Organ
+from organavailability.forms import OrganDonationForm, OrganSearchForm
+from landingpage.models import Hospital  # Import Hospital model
+from organavailability.models import Organ
 from django.contrib.auth.decorators import login_required
 import json
 import osmnx as ox
 import networkx as nx
 from django.shortcuts import render
 from django.http import JsonResponse
-from medcare.organavailability.models import Organ
+from organavailability.models import Organ
 from landingpage.models import Hospital
 from django.shortcuts import render
-from medcare.organavailability.forms import OrganSearchForm
-from medcare.organavailability.models import Organ
+from organavailability.forms import OrganSearchForm
+from organavailability.models import Organ
 import osmnx as ox
 #from medcare.decorators import login_required_redirect #, allowed_users
 from django.contrib.auth.decorators import login_required
-from medcare.medcare import settings
+from medcare import settings
 import os
 
 def find_distance(G, coord1, coord2):
