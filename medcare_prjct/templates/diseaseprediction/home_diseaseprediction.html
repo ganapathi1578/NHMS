@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NHMS - Disease Prediction</title>
+  <link rel="stylesheet" href="{% static 'css/diseaseprediction/home_diseaseprediction.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR START -->
+  <nav class="navbar">
+    <div class="brand">
+      <img src="{% static 'images/logo.png'%}" alt="Logo" class="logo">
+      <span class="brand-name">NextGen Health Management System</span>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+      <li><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+      <li><a href="{% url 'home_diseaseprediction' %}" class="nav-link">AI Prediction</a></li>
+      <li><a href="{% url 'aboutUs' %}" class="nav-link">About</a></li>
+    </ul>
+    <div class="login-icon">
+      <a href="{% if request.session.user_email %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Login" class="login-logo">
+      </a>
+    </div>
+  </nav>
+  <!-- NAVBAR END  -->
+
+
+  <!-- HERO SECTION SLIDING IMAGES START  -->
+
+  <div class="hero">
+    <div class="slides-container">
+        <div class="slides" id="slides">
+            
+            <div class="slide"><img src="{% static  'images/hero4.png' %}" alt="Slide 5"></div>
+
+            <div class="slide"><img src="{% static  'images/hero5.png' %}" alt="Slide 1"></div>
+            <div class="slide"><img src="{% static 'images/hero1.png' %}" alt="Slide 2"></div>
+            <div class="slide"><img src="{% static  'images/hero2.png' %}" alt="Slide 3"></div>
+            <div class="slide"><img src="{% static  'images/hero3.png' %}" alt="Slide 4"></div>
+            <div class="slide"><img src="{% static  'images/hero4.png' %}" alt="Slide 5"></div>
+
+         
+            <div class="slide"><img src="{% static  'images/hero5.png' %}" alt="Slide 1"></div>
+        </div>
+
+        
+    </div>
+    <button id="prev" class="nav-arrow left">❮</button>
+        <button id="next" class="nav-arrow right">❯</button>
+</div>
+
+  <!-- HERO SECTION SLIDING IMAGES END  -->
+
+  <!-- INTRO SECTION START -->
+<div class="intro-section">
+  <h2>Advanced AI-Powered Disease Prediction</h2>
+  <p>Our state-of-the-art AI technology analyzes medical data with high precision, offering early and accurate predictions for various health conditions. Take control of your well-being with actionable insights.</p>
+</div>
+<!-- INTRO SECTION END -->
+
+<!-- HOW IT WORKS START -->
+<div class="how-it-works">
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <span>1</span>
+      <p>Upload your medical data or test results.</p>
+    </div>
+    <div class="step">
+      <span>2</span>
+      <p>Our AI analyzes the data in real-time.</p>
+    </div>
+    <div class="step">
+      <span>3</span>
+      <p>Receive instant, accurate predictions.</p>
+    </div>
+  </div>
+</div>
+<!-- HOW IT WORKS END -->
+ <hr>
+
+
+  <!-- PREDICTION CARD STRUCTURE START -->
+<!-- 
+  <div class="prediction-heading">
+    <p>Predict Disease with AI at your comfort</p>
+  </div> -->
+
+  <div class="card-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card1-video.mp4'%}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">ECG Monitoring Prediction</h2>
+        <p class="card-description">
+          AI-powered ECG analysis detects heart abnormalities instantly from uploaded graphs for early risk assessment.
+        </p>
+        <button class="card-button"><a href="{% url  'gotoecg'%}">Predict Here</a></button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card2-video.mp4'%}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">Brain Tumor Prediction</h2>
+        <p class="card-description">
+          AI analyzes MRI scans to identify brain tumors quickly for faster diagnosis.
+        </p>
+        <button class="card-button"><a href="{% url 'gototumor' %}">Predict Here</a></button>
+      </div>
+    </div>
+  </div>
+  <div class="card-container">
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card3-video.mp4'%}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">Tuberculosis Prediction</h2>
+        <p class="card-description">
+          AI detects TB indicators in chest X-rays for rapid diagnosis.
+        </p>
+        <button class="card-button"><a href="{% url 'gototubersulosis' %}">Predict Here</a></button>
+        
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card4-video.mp4'%}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">Diabetes Prediction</h2>
+        <p class="card-description">
+          AI assesses diabetes risk using health metrics like glucose and BMI.
+        </p>
+        <button class="card-button"><a href="{% url 'gotodiabetes' %}">Predict Here</a></button>
+      </div>
+    </div>
+
+    <!-- Card 5  -->
+    <div class="card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card5-video.mp4' %}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">Cataract Prediction</h2>
+        <p class="card-description">
+          AI analyzes eye images to detect early cataract signs for timely care.
+        </p>
+        <button class="card-button"><a href="{% url 'gotocataract' %}">Predict Here</a></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card6-video.mp4'%}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">Stress Monitor</h2>
+        <p class="card-description">
+          AI monitors stress levels through biometric data for mental well-being.
+        </p>
+        <button class="card-button"><a href="{% url 'gotostress' %}">Predict Here</a></button>
+      </div>
+    </div>
+    <div class="card last-card">
+      <div class="card-graphics">
+        <video src="{% static 'images/card7-video.mp4'%}" autoplay loop muted playsinline></video>
+      </div>
+      <div class="card-content">
+        <h2 class="card-heading">AIDs Prediction</h2>
+        <p class="card-description">
+          AI evaluates AIDS risk by analyzing health parameters for proactive care.
+        </p>
+        <button class="card-button"><a href="{% url 'gotoaids' %}">Predict Here</a></button>
+      </div>
+    </div>
+  </div>
+  <!-- PREDICTION CARD STRUCTURE END  -->
+
+  <!-- Prediction Result Display -->
+  <div id="predictionResult" style="margin: 20px; text-align: center; font-size: 1.2em;"></div>
+
+
+
+  <!-- FOOTER START -->
+
+
+    <footer class="footer">
+      <div class="footer-container">
+          <div class="footer-column">
+              <h3>NextGen Health Management System</h3>
+              <p>Empowering Health Through Innovation</p>
+              <div class="social-icons">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+              </div>
+          </div>
+          <div class="footer-column">
+              <h4>Quick Links</h4>
+              <ul>
+                  <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+                  <li><a href="services.html">Services</a></li>
+                  <li><a href="disease_prediction.html">AI Prediction</a></li>
+                  <li><a href="privacy.html">Privacy Policy</a></li>
+              </ul>
+          </div>
+          <div class="footer-column">
+              <h4>Contact</h4>
+              <ul>
+                  <li><i class="fas fa-map-marker-alt"></i>NIT MIZORAM</li>
+                  <li><i class="fas fa-phone"></i>+91 73888-77756</li>
+                  <li><i class="fas fa-envelope"></i>100rab777888@gmail.com</li>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>© 2025 NextGen Health Management System. All rights reserved.</p>
+      </div>
+  </footer>
+
+<!-- FOOTER END  -->
+
+  <script src="/static/cataract.js"></script>
+  <script src={% static 'js/diseaseprediction/home_diseaseprediction.js' %}></script>
+  <script src="https://kit.fontawesome.com/ea22784fe1.js" crossorigin="anonymous"></script>
+</body>
+</html>

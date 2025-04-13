@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Health Management System</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVBAR START -->
+    <nav class="navbar">
+        <div class="brand">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            <span class="brand-name">NextGen Health Management System</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+            <li><a href="{% url 'home_diseaseprediction' %}" class="nav-link">AI Prediction</a></li>
+            <li><a href="{% url 'aboutUs' %}" class="nav-link">About</a></li>
+        </ul>
+        <div class="login-icon">
+            
+                <a href="{% if request.session.user_email %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Login" class="login-logo">
+                </a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <div class="all-row" style="border: 1px solid black; border-radius: 10px; padding: 20px;">
+        <h1 style="text-align: center;">Enter the detail of organ you want to add</h1>
+        <hr>
+        <div class="row1">
+
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Organ Nmae " aria-label="Organ Nmae">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Blood type" aria-label="Blood type">
+            </div>
+
+        </div>
+        <div class="row1">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Quantity" aria-label="Quantity">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="age  " aria-label="age ">
+            </div>
+        </div>
+        <div class="row1">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Sex" aria-label="Sex">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Date of donation " aria-label="Date of donation">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Primary</button>
+        </div>
+    </div>
+
+
+
+
+    <!-- FOOTER START -->
+
+    <!-- Add this in the FOOTER SECTION of landing_page.html -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>MedCare</h3>
+                <p>Empowering Health Through Innovation</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">AI Prediction</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, MedCity</li>
+                    <li><i class="fas fa-phone"></i> +1 (234) 567-890</li>
+                    <li><i class="fas fa-envelope"></i> contact@medcare.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 MedCare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FOOTER END  -->
+    <script src="organ.js"></script>
+    <script src="https://kit.fontawesome.com/ea22784fe1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   
+
+</body>
+
+</html>

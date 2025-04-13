@@ -1,0 +1,589 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Stress Prediction | NextGen Health</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --error: #d32f2f;
+            --success: #388e3c;
+            --text: #202124;
+            --light-text: #5f6368;
+            --border: #dfe1e5;
+            --bg: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .form-description {
+            text-align: center;
+            color: var(--light-text);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .input-container {
+            position: relative;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+        }
+        
+        .constraint {
+            font-size: 13px;
+            color: var(--light-text);
+            margin-top: 5px;
+        }
+        
+        .error-message {
+            color: var(--error);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #3a5a8a;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .success {
+            background-color: rgba(56, 142, 60, 0.1);
+            border-left: 4px solid var(--success);
+        }
+        
+        .warning {
+            background-color: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+        }
+        
+        .danger {
+            background-color: rgba(211, 47, 47, 0.1);
+            border-left: 4px solid var(--error);
+        }
+        
+        .input-error {
+            border-color: var(--error);
+        }
+        
+        .slider-container {
+            margin-top: 10px;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #ddd;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            text-align: center;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .total-stress {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mental Stress Assessment</h1>
+        <p class="form-description">
+            Complete this form to assess your current mental stress levels. 
+            This tool helps identify potential stress factors and provides personalized recommendations.
+        </p>
+        
+        <form id="stressForm">
+            <!-- Demographic Information -->
+            <div class="form-group">
+                <label for="age">Age</label>
+                <div class="input-container">
+                    <input type="number" id="age" name="age" min="18" max="24" required>
+                    <div class="constraint">Range: 18-24 years</div>
+                </div>
+                <div class="error-message" id="age-error">Please enter age between 18-24</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <div class="input-container">
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                        <option value="O">Other/Prefer not to say</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="year">Year of Study</label>
+                <div class="input-container">
+                    <select id="year" name="year" required>
+                        <option value="" disabled selected>Select year</option>
+                        <option value="1">First Year</option>
+                        <option value="2">Second Year</option>
+                        <option value="3">Third Year</option>
+                        <option value="4">Fourth Year</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Support Systems -->
+            <div class="form-group">
+                <label for="familySupport">Family Support Level</label>
+                <div class="input-container">
+                    <select id="familySupport" name="familySupport" required>
+                        <option value="" disabled selected>Select support level</option>
+                        <option value="0">Low</option>
+                        <option value="1">Medium</option>
+                        <option value="2">High</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="behavior">Student Behavior</label>
+                <div class="input-container">
+                    <select id="behavior" name="behavior" required>
+                        <option value="" disabled selected>Select behavior type</option>
+                        <option value="reactive">Reactive</option>
+                        <option value="aggressive">Aggressive</option>
+                        <option value="reserved">Reserved</option>
+                        <option value="positive">Positive</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="placement">Placement Status</label>
+                <div class="input-container">
+                    <select id="placement" name="placement" required>
+                        <option value="" disabled selected>Select status</option>
+                        <option value="placed">Placed</option>
+                        <option value="not_eligible">Not Eligible</option>
+                        <option value="not_placed">Not Placed</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Lifestyle Factors -->
+            <div class="form-group">
+                <label for="sleep">Average Sleep Hours Per Night</label>
+                <div class="input-container">
+                    <input type="number" id="sleep" name="sleep" min="2" max="12" required>
+                    <div class="constraint">Range: 2-12 hours</div>
+                </div>
+                <div class="error-message" id="sleep-error">Please enter value between 2-12</div>
+            </div>
+            
+            <!-- Stress Levels -->
+            <div class="form-group">
+                <label>Academic Stress Level</label>
+                <div class="slider-container">
+                    <input type="range" min="1" max="10" value="5" class="slider" id="academicStress">
+                    <div class="slider-value"><span id="academicValue">5</span>/10</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Financial Stress Level</label>
+                <div class="slider-container">
+                    <input type="range" min="1" max="10" value="5" class="slider" id="financialStress">
+                    <div class="slider-value"><span id="financialValue">5</span>/10</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Family Stress Level</label>
+                <div class="slider-container">
+                    <input type="range" min="1" max="10" value="5" class="slider" id="familyStress">
+                    <div class="slider-value"><span id="familyValue">5</span>/10</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Emotional Stress Level</label>
+                <div class="slider-container">
+                    <input type="range" min="1" max="10" value="5" class="slider" id="emotionalStress">
+                    <div class="slider-value"><span id="emotionalValue">5</span>/10</div>
+                </div>
+            </div>
+            
+            <!-- Total Stress Display -->
+            <div class="total-stress">
+                Total Stress Score: <span id="totalStressValue">20</span>/40
+            </div>
+            
+            <div class="form-group">
+                <label for="mainStress">Main Stress Source</label>
+                <div class="input-container">
+                    <select id="mainStress" name="mainStress" required>
+                        <option value="" disabled selected>Select main source</option>
+                        <option value="academic">Academic</option>
+                        <option value="financial">Financial</option>
+                        <option value="family">Family</option>
+                        <option value="emotional">Emotional</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Coping Mechanisms (Single Selection) -->
+            <div class="form-group">
+                <label>Primary Coping Mechanism</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="journaling" name="coping" value="journaling" required>
+                        <label for="journaling">Journaling</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="socializing" name="coping" value="socializing">
+                        <label for="socializing">Socializing</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="reading" name="coping" value="reading">
+                        <label for="reading">Reading</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="exercise" name="coping" value="exercise">
+                        <label for="exercise">Exercise</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="meditation" name="coping" value="meditation">
+                        <label for="meditation">Meditation</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Risk Factors -->
+            <div class="form-group">
+                <label for="riskyBehavior">Engagement in Risky Behavior</label>
+                <div class="input-container">
+                    <select id="riskyBehavior" name="riskyBehavior" required>
+                        <option value="" disabled selected>Select option</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Academic Performance -->
+            <div class="form-group">
+                <label for="cgpa">Current CGPA</label>
+                <div class="input-container">
+                    <input type="number" id="cgpa" name="cgpa" min="2" max="4" step="0.01" required>
+                    <div class="constraint">Range: 2.00-4.00</div>
+                </div>
+                <div class="error-message" id="cgpa-error">Please enter value between 2.00-4.00</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="income">Parental Income (Annual)</label>
+                <div class="input-container">
+                    <select id="income" name="income" required>
+                        <option value="" disabled selected>Select income range</option>
+                        <option value="low">Below $30,000</option>
+                        <option value="medium">$30,000 - $70,000</option>
+                        <option value="high">Above $70,000</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" id="submitBtn">Assess My Stress Level</button>
+        </form>
+        
+        <div class="result" id="resultContainer">
+            <h3 id="resultTitle">Stress Assessment Result</h3>
+            <p id="resultText"></p>
+            <div id="recommendations"></div>
+        </div>
+    </div>
+
+    <script>
+        // Update slider values and total stress in real-time
+        function updateStressValues() {
+            const academic = parseInt(document.getElementById('academicStress').value);
+            const financial = parseInt(document.getElementById('financialStress').value);
+            const family = parseInt(document.getElementById('familyStress').value);
+            const emotional = parseInt(document.getElementById('emotionalStress').value);
+            const totalStress = academic + financial + family + emotional;
+            
+            document.getElementById('academicValue').textContent = academic;
+            document.getElementById('financialValue').textContent = financial;
+            document.getElementById('familyValue').textContent = family;
+            document.getElementById('emotionalValue').textContent = emotional;
+            document.getElementById('totalStressValue').textContent = totalStress;
+        }
+        
+        // Set up event listeners for all sliders
+        document.getElementById('academicStress').addEventListener('input', updateStressValues);
+        document.getElementById('financialStress').addEventListener('input', updateStressValues);
+        document.getElementById('familyStress').addEventListener('input', updateStressValues);
+        document.getElementById('emotionalStress').addEventListener('input', updateStressValues);
+        
+        // Initialize values
+        updateStressValues();
+        
+        // Form submission
+        document.getElementById('stressForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate all fields
+            const numericFields = [
+                {id: 'age', min: 18, max: 24},
+                {id: 'sleep', min: 2, max: 12},
+                {id: 'cgpa', min: 2, max: 4}
+            ];
+            
+            let isValid = true;
+            
+            numericFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const error = document.getElementById(`${field.id}-error`);
+                const value = parseFloat(input.value);
+                
+                if (isNaN(value) || value < field.min || value > field.max) {
+                    input.classList.add('input-error');
+                    error.style.display = 'block';
+                    isValid = false;
+                } else {
+                    input.classList.remove('input-error');
+                    error.style.display = 'none';
+                }
+            });
+            
+            // Validate select fields
+            const selectFields = ['gender', 'year', 'familySupport', 'behavior', 
+                                'placement', 'mainStress', 'riskyBehavior', 'income'];
+            
+            selectFields.forEach(field => {
+                const select = document.getElementById(field);
+                if (!select.value) {
+                    select.classList.add('input-error');
+                    isValid = false;
+                } else {
+                    select.classList.remove('input-error');
+                }
+            });
+            
+            // Validate radio buttons (coping mechanism)
+            const copingSelected = document.querySelector('input[name="coping"]:checked');
+            if (!copingSelected) {
+                isValid = false;
+                // You might want to add error display for this as well
+            }
+            
+            if (isValid) {
+                processStressAssessment();
+            }
+        });
+        
+        function processStressAssessment() {
+            const resultContainer = document.getElementById('resultContainer');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+            const recommendations = document.getElementById('recommendations');
+            
+            // Simulate processing
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').textContent = 'Analyzing...';
+            
+            setTimeout(() => {
+                // Calculate total stress (sum of all stress levels)
+                const academic = parseInt(document.getElementById('academicStress').value);
+                const financial = parseInt(document.getElementById('financialStress').value);
+                const family = parseInt(document.getElementById('familyStress').value);
+                const emotional = parseInt(document.getElementById('emotionalStress').value);
+                const totalStress = academic + financial + family + emotional;
+                
+                // Determine stress level
+                let stressLevel, stressClass;
+                
+                if (totalStress <= 15) {
+                    stressLevel = "Low";
+                    stressClass = "success";
+                } else if (totalStress <= 25) {
+                    stressLevel = "Moderate";
+                    stressClass = "warning";
+                } else {
+                    stressLevel = "High";
+                    stressClass = "danger";
+                }
+                
+                // Display results
+                resultContainer.className = `result ${stressClass}`;
+                resultTitle.textContent = `Your Stress Level: ${stressLevel}`;
+                resultText.innerHTML = `Your total stress score is <strong>${totalStress}/40</strong>.`;
+                
+                // Generate recommendations
+                recommendations.innerHTML = generateRecommendations(totalStress);
+                
+                resultContainer.style.display = 'block';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = 'Assess My Stress Level';
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
+            }, 1500);
+        }
+        
+        function generateRecommendations(totalStress) {
+            let html = "<h4>Recommendations:</h4><ul>";
+            
+            if (totalStress > 25) {
+                html += "<li>Consider scheduling an appointment with a counselor or mental health professional</li>";
+                html += "<li>Practice daily relaxation techniques like deep breathing for 5-10 minutes</li>";
+            } else if (totalStress > 15) {
+                html += "<li>Try to maintain a consistent sleep schedule of 7-9 hours per night</li>";
+                html += "<li>Take regular breaks during study sessions (5-10 minutes every hour)</li>";
+            } else {
+                html += "<li>Continue your current stress management strategies</li>";
+                html += "<li>Consider helping peers who might be experiencing higher stress levels</li>";
+            }
+            
+            // Add coping mechanism specific advice
+            const coping = document.querySelector('input[name="coping"]:checked').value;
+            switch(coping) {
+                case "journaling":
+                    html += "<li>Try journaling for 10-15 minutes daily to process thoughts and emotions</li>";
+                    break;
+                case "socializing":
+                    html += "<li>Schedule regular social activities with supportive friends</li>";
+                    break;
+                case "exercise":
+                    html += "<li>Aim for 30 minutes of moderate exercise most days of the week</li>";
+                    break;
+                case "meditation":
+                    html += "<li>Try guided meditation apps for 10 minutes daily</li>";
+                    break;
+                case "reading":
+                    html += "<li>Set aside leisure reading time to help your mind relax</li>";
+                    break;
+            }
+            
+            html += "</ul>";
+            return html;
+        }
+    </script>
+</body>
+</html>

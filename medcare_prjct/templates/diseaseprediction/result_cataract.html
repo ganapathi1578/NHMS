@@ -1,0 +1,16 @@
+{% extends 'diseaseprediction/predict_cataract.html' %}    
+{% load static %}
+{% block content %}
+
+
+            
+    <div class="result-details">
+        <p><strong>Prediction:</strong> {{ result }}</p>
+    </div>
+
+    <p>Was this prediction correct?</p>
+    <button class="feedback-btn thumbs-up" id="thumbsUp">👍</button>
+    <a href="{% url 'feedback_cataract' result=result path=image_url %}">
+    <button class="feedback-btn thumbs-down" id="thumbsDown">👎</button>
+    </a>
+{% endblock %}

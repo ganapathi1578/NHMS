@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose Account</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { margin-top: 50px; }
+        button { padding: 10px 20px; margin: 10px; cursor: pointer; background: #007BFF; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Choose Your Account Type</h2>
+        <a href="{% url 'user_signup' %}"><button>User</button></a>
+        <a href="{% url 'clinic_signup' %}"><button>Clinic</button></a>
+        <a href="{% url 'hospital_signup' %}"><button>Hospital</button></a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+{% extends 'diseaseprediction/base.html' %}
+{% load static %}
+
+{% block contents %}
+<div class="aids-container">
+  <div class="header-section">
+    <h1 class="title">Clinical AIDs Prediction</h1>
+    <p class="subtitle">
+      This form collects clinical parameters to predict biological age.
+      Please provide accurate information for the most reliable prediction.
+    </p>
+  </div>
+
+  <div class="form-section">
+    <form action="{% url 'predict_aids' %}" method="post" id="aidsForm">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" id="submitBtn" class="submit-button">Predict Biological Age</button>
+    </form>
+  </div>
+
+  {% if result %}
+    <div class="result" id="resultContainer">
+      <h3 id="resultTitle">Prediction Result</h3>
+      <p id="resultText">{{ result }}</p>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  /* Base Reset and Typography */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background: #f7f9fc;  /* light gray-blue background */
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    line-height: 1.6;
+  }
+
+  /* Container Styling */
+  .aids-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  .aids-container:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Header Section */
+  .header-section {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header-section .title {
+    font-size: 2.5rem;
+    color: #1a3c40;
+    margin-bottom: 10px;
+  }
+  .header-section .subtitle {
+    font-size: 1.125rem;
+    color: #5a6d7c;
+  }
+
+  /* Form Section */
+  .form-section {
+    margin-bottom: 40px;
+    padding: 0 10px;
+  }
+  form p {
+    margin-bottom: 20px;
+  }
+  form p label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+  }
+  form p input,
+  form p select,
+  form p textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccd0d5;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.25s ease;
+  }
+  form p input:focus,
+  form p select:focus,
+  form p textarea:focus {
+    outline: none;
+    border-color: #1a3c40;
+  }
+  form p .helptext {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    margin-top: 5px;
+  }
+  form p .errorlist {
+    color: #d9534f;
+    list-style: none;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+
+  /* Submit Button */
+  .submit-button {
+    display: inline-block;
+    background-color: #1a3c40;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .submit-button:hover {
+    background-color: #16322d;
+    transform: scale(1.02);
+  }
+
+  /* Result Section */
+  .result {
+    background: #eafaf1;
+    border: 1px solid #b6e2c6;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .result h3 {
+    color: #157347;
+    margin-bottom: 15px;
+    font-size: 1.75rem;
+  }
+  .result p {
+    font-size: 1.1rem;
+    color: #495057;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .aids-container {
+      margin: 30px 20px;
+      padding: 30px 20px;
+    }
+    .header-section .title {
+      font-size: 2rem;
+    }
+    .submit-button {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+</style>
+{% endblock %}

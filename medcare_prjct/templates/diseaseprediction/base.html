@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Health Management System</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVBAR START -->
+    <nav class="navbar">
+        <div class="brand">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            <span class="brand-name">NextGen Health Management System</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+            <li><a href="{% url 'home_diseaseprediction' %}" class="nav-link">AI Prediction</a></li>
+            <li><a href="{% url 'aboutUs' %}" class="nav-link">About</a></li>
+        </ul>
+        <div class="login-icon">
+            
+                <a href="{% if request.session.user_email %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Login" class="login-logo">
+                </a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+
+  {% block contents %}
+
+  {% endblock %}
+
+      <!-- FOOTER START -->
+      <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>NextGen Health Management System</h3>
+                <p>Empowering Health Through Innovation</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'home_diseaseprediction' %}">AI Prediction</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 NextGen Health Management System. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="https://kit.fontawesome.com/ea22784fe1.js" crossorigin="anonymous"></script>
+</body>
+</html>

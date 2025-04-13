@@ -1,0 +1,24 @@
+{% extends 'diseaseprediction/predict_ecg.html' %}    
+{% load static %}
+{% block content %}
+
+{% if image_url %}
+
+{% endif %}
+
+            
+
+
+    <div class="result-details">
+        <p><strong>Prediction:</strong> {{ result }}</p>
+        {% if result %}
+        {% else %}
+        {% endif %}
+    </div>
+
+    <p>Was this prediction correct?</p>
+            <button class="feedback-btn thumbs-up" id="thumbsUp">👍</button>
+            <a href="{% url 'feedback_ecg'%}">
+                <button class="feedback-btn thumbs-down" id="thumbsDown">👎</button>
+            </a>
+{% endblock %}

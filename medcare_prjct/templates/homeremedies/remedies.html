@@ -1,0 +1,51 @@
+{% extends 'homeremedies/base.html' %}
+
+{% block title %}Home Remedies{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="category-grid">          
+            {% for remedy in remedies %}
+                <div class="category-card">
+
+                    <div class="remedy">
+                        {{ remedy.name }}
+                    </div>
+                    <div class="remedydetails">
+                        {{ remedy.details }}
+                    </div>
+                     
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <style>
+        .category-card {
+            background: #f9f9f9; /* Light background */
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .category-card:hover {
+            transform: scale(1.02); /* Slight zoom on hover */
+        }
+        
+        .remedy {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333; /* Dark color for contrast */
+            margin-bottom: 5px;
+        }
+        
+        .remedydetails {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+</style>
+
+{% endblock %}

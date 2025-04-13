@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | NextGen Health</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+        <!-- NAVBAR START -->
+        <nav class="navbar">
+            <div class="brand">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+                <span class="brand-name">NextGen Health Management System</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+                <li><a href="{% url 'home_diseaseprediction'%}" class="nav-link">AI Prediction</a></li>
+                <li><a href="{% url 'aboutUs'%}" class="nav-link">About</a></li>
+            </ul>
+            <div class="login-icon">
+            <a href="{% if request.session.user_email %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Login" class="login-logo">
+            </a>
+            </div>
+        </nav>
+      <!-- NAVBAR END  -->
+
+    <!-- SERVICES HERO SECTION -->
+    <div class="services-hero"  style="background-image: url('{% static 'images/back_services.png' %}');">
+        <div class="hero-overlay">
+            
+            <h1>Comprehensive Healthcare Solutions</h1>
+            <p>Innovative services designed for modern healthcare needs</p>
+        </div>
+    </div>
+
+
+
+
+    <!-- SERVICE DETAIL SECTIONS -->
+    <main class="services-container">
+        <!-- Natural Remedies Section -->
+        <section class="service-detail alternate">
+            <div class="service-image">
+                <img src="{% static 'images/natural_remedies.jpg' %}" alt="Natural Remedies">
+            </div>
+            <div class="service-content">
+                <h2><i class="fas fa-leaf"></i> Natural Home Remedies</h2>
+                <p class="highlight">Empowering self-care through traditional wisdom and modern validation</p>
+                <ul class="service-features">
+                    <li><i class="fas fa-check-circle"></i> 1200+ verified natural treatments</li>
+                    <li><i class="fas fa-check-circle"></i> Side-effect free solutions</li>
+                    <li><i class="fas fa-check-circle"></i> Expert-reviewed recommendations</li>
+                    <li><i class="fas fa-check-circle"></i> Condition-specific guidance</li>
+                    
+                </ul>
+                
+            </div>
+        </section>
+
+        <!-- Organ Delivery Section -->
+        <section class="service-detail">
+            <div class="service-content">
+                <h2><i class="fas fa-ambulance"></i> Life-Saving Network</h2>
+                <p class="highlight">Real-time organ and blood management system</p>
+                <div class="system-features">
+                    <div class="system-card">
+                        <i class="fas fa-hospital"></i>
+                        <h3>125+ Partner Hospitals</h3>
+                        <p>City-wide network coverage</p>
+                    </div>
+                    <div class="system-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>24/7 Emergency Access</h3>
+                        <p>Immediate request processing</p>
+                    </div>
+                    <div class="system-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Live Tracking</h3>
+                        <p>Real-time delivery monitoring</p>
+                    </div>
+                </div>
+                <a href="#" class="service-cta">Access Network Portal</a>
+            </div>
+            <div class="service-image">
+                <img src="{% static 'images/organ1.png' %}" alt="Organ Delivery System">
+            </div>
+        </section>
+
+        <!-- AI Prediction Section -->
+        <section class="service-detail alternate">
+            <div class="service-image">
+                <img src="{% static 'images/smart_diagoniss.avif' %}" alt="AI Diagnosis">
+            </div>
+            <div class="service-content">
+                <h2><i class="fas fa-robot"></i> Smart Diagnosis System</h2>
+                <p class="highlight">Advanced AI-powered health assessment</p>
+                <div class="ai-features">
+                    <div class="ai-card">
+                        <div class="ai-header">
+                            <i class="fas fa-x-ray"></i>
+                            <h3>Medical Imaging Analysis</h3>
+                        </div>
+                        <ul>
+                            <li>Cataract Detection</li>
+                            <li>Tumor Identification</li>
+                            <li>TB Screening</li>
+                        </ul>
+                    </div>
+                    <div class="ai-card">
+                        <div class="ai-header">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h3>Symptom Assessment</h3>
+                        </div>
+                        <ul>
+                            <li>Diabetes Risk Analysis</li>
+                            <li>Cardiac Health Check</li>
+                            <li>General Wellness Score</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="disease_prediction.html" class="service-cta">Try AI Diagnosis</a>
+            </div>
+        </section>
+    </main>
+
+        <!-- FOOTER START -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>NextGen Health Management System</h3>
+            <p>Empowering Health Through Innovation</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="disease_prediction.html">AI Prediction</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Contact</h4>
+            <ul>
+                <li><i class="fas fa-map-marker-alt"></i>NIT MIZORAM</li>
+                <li><i class="fas fa-phone"></i>+91 73888-77756</li>
+                <li><i class="fas fa-envelope"></i>100rab777888@gmail.com</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 NextGen Health Management System. All rights reserved.</p>
+    </div>
+</footer>
+
+    <!-- FOOTER END  -->
+
+    <script src="landing_page.js"></script>
+    <script src="https://kit.fontawesome.com/ea22784fe1.js" crossorigin="anonymous"></script>
+</body>
+</html>
