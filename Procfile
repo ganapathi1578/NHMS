@@ -1,1 +1,1 @@
-web: gunicorn medcare.medcare.wsgi:application
+web: gunicorn medcare_prjct.medcare.wsgi:application
