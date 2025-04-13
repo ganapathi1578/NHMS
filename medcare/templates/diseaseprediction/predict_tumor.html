@@ -1,0 +1,144 @@
+{% extends 'diseaseprediction/base.html' %}
+{% load static %}
+
+{% block contents %}
+<div class="tumor-container">
+  <div class="header-section">
+    <h1 class="title">Tumor Prediction</h1>
+    <p class="subtitle">Upload a medical image to detect signs of tumor using our AI-powered model</p>
+  </div>
+
+  <div class="form-section">
+    <form action="{% url 'predict_tumor' %}" method="POST" enctype="multipart/form-data" class="upload-form">
+      {% csrf_token %}
+      <label for="image" class="form-label">Select Image:</label>
+      <input type="file" name="image" id="image" required class="file-input">
+      
+      <button type="submit" class="submit-button">Predict Tumor</button>
+    </form>
+  </div>
+  {% if uploaded_image_url or result_image_url %}
+  <div class="result-images">
+    {% if uploaded_image_url %}
+    <div class="image-block">
+      <h3>Uploaded Image</h3>
+      <img src="{{ uploaded_image_url }}" alt="Uploaded Image" class="preview-img">
+    </div>
+    {% endif %}
+  
+    {% if result_image_url %}
+    <div class="image-block">
+      <h3>Predicted Result</h3>
+      <img src="{{ result_image_url }}" alt="Result Image" class="preview-img">
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+</div>
+
+<style>
+  .tumor-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .header-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: block;
+    text-align: center;
+    color: #333;
+  }
+
+  .file-input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .submit-button {
+    background-color: #e67e22;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .submit-button:hover {
+    background-color: #d35400;
+  }
+  .result-images {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .image-block {
+    text-align: center;
+  }
+  
+  .preview-img {
+    max-width: 20rem;
+    height: 20rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  @media (max-width: 700px) {
+    .result-images {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tumor-container {
+      margin: 30px 20px;
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .submit-button {
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}

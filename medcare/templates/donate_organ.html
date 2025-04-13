@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organ Check Page | MedCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/organavailability/add_organ.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    /* Navbar */
+    .navbar {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar .brand img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .navbar .brand .brand-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #007BFF;
+    }
+    .navbar .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+    }
+    .navbar .nav-menu li a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .navbar .nav-menu li a:hover {
+      color: #007BFF;
+    }
+    .navbar .login-icon img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+    /* Organ Form Container */
+    .organ-form-container {
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .organ-form-container h1 {
+      text-align: center;
+      font-weight: 700;
+      color: #007BFF;
+      margin-bottom: 1rem;
+    }
+    .organ-form-container hr {
+      margin: 1.5rem 0;
+    }
+    .organ-form-container form button {
+      background-color: #007BFF;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      color: #fff;
+      cursor: pointer;
+    }
+    .organ-form-container form button:hover {
+      background-color: #0056b3;
+    }
+    /* Footer */
+    .footer {
+      background-color: #343a40;
+      color: #ccc;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    .footer .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .footer .footer-column h3, 
+    .footer .footer-column h4 {
+      color: #fff;
+    }
+    .footer .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer .footer-column ul li a:hover {
+      color: #fff;
+    }
+    .footer .social-icons a {
+      color: #ccc;
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+    .footer .social-icons a:hover {
+      color: #007BFF;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Health Management System</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVBAR START -->
+    <nav class="navbar">
+        <div class="brand">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            <span class="brand-name">NextGen Health Management System</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+            <li><a href="{% url 'home_diseaseprediction' %}" class="nav-link">AI Prediction</a></li>
+            <li><a href="{% url 'aboutUs' %}" class="nav-link">About</a></li>
+        </ul>
+        <div class="login-icon">
+            
+                <a href="{% if request.session.user_email %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Login" class="login-logo">
+                </a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+  <!-- ORGAN FORM SECTION START -->
+  <div class="organ-form-container">
+    <h1>Enter the Details of Organ Donation</h1>
+    <hr>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="d-flex justify-content-center">
+        <button type="submit">Donate Organ</button>
+      </div>
+    </form>
+  </div>
+  <!-- ORGAN FORM SECTION END -->
+
+  <!-- FOOTER START -->
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>NextGen Health Management System</h3>
+            <p>Empowering Health Through Innovation</p>
+        </div>
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'home_diseaseprediction' %}">AI Prediction</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 NextGen Health Management System. All rights reserved.</p>
+    </div>
+</footer>
+<!-- FOOTER END -->
+
+  <script src="organ.js"></script>
+  <script src="https://kit.fontawesome.com/ea22784fe1.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

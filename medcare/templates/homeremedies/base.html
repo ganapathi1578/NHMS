@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthHome Remedies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'css/home_homeremedies.css' %}">
+  <style>
+    /* Overall Body Styles */
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f2f8fc;
+      margin: 0;
+      color: #333;
+    }
+
+    /* HEADER STYLES */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+    .brand-logo {
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+    .user-icon {
+      font-size: 32px;
+      color: #007BFF;
+    }
+
+    /* CHAT SEARCH BAR STYLES */
+    .chat-search-container {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      max-width: 450px;
+      margin: 0 20px;
+    }
+    .chat-search-input {
+      flex: 1;
+      height: 40px;
+      padding: 0 15px;
+      border: 1px solid #ccc;
+      border-right: none;
+      border-radius: 20px 0 0 20px;
+      outline: none;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    .chat-search-input:focus {
+      border-color: #007BFF;
+    }
+    .chat-send-button {
+      height: 40px;
+      padding: 0 20px;
+      border: 1px solid #007BFF;
+      border-left: none;
+      background-color: #007BFF;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 0 20px 20px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .chat-send-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* CHAT MODAL OVERLAY STYLES */
+    .chat-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    /* CHAT MODAL DIALOGUE STYLES */
+    .chat-modal {
+      width: 90%;
+      max-width: 800px;
+      height: 80%;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .chat-modal-header {
+      background: #007BFF;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-modal-close {
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .chat-modal-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #f9f9f9;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .chat-message {
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      max-width: 75%;
+      word-wrap: break-word;
+    }
+    .chat-message.user {
+      background: #d1e7dd;
+      align-self: flex-end;
+      text-align: right;
+    }
+    .chat-message.bot {
+      background: #e9f5ff;
+      align-self: flex-start;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <img src="{% static 'images/logo.png' %}" alt="HealthLogo" class="brand-logo">
+      <span class="brand-name">NextGen Health Management System </span>
+    </div>
+    <!-- Chat search bar in header -->
+    <div class="chat-search-container">
+      <input type="text" id="chatSearchInput" class="chat-search-input" placeholder="Ask about your health concern...">
+      <button class="chat-send-button" id="chatSendButton">Send</button>
+    </div>
+    <a href={% url 'profile' %} >
+    <i class="fas fa-user-circle user-icon"  title="Profile"></i>
+    </a>
+  </header>
+
+  {% block content %}
+  <!-- Your other page content goes here -->
+  {% endblock %}
+
+  <!-- Chat Modal Overlay -->
+  <div class="chat-modal-overlay" id="chatModalOverlay">
+    <div class="chat-modal" id="chatModal">
+      <div class="chat-modal-header">
+        Search Bot
+        <span class="chat-modal-close" id="chatModalClose">&times;</span>
+      </div>
+      <div class="chat-modal-content" id="chatModalContent">
+        <!-- Chat messages will be appended here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatSearchInput = document.getElementById('chatSearchInput');
+    const chatSendButton = document.getElementById('chatSendButton');
+    const chatModalOverlay = document.getElementById('chatModalOverlay');
+    const chatModalContent = document.getElementById('chatModalContent');
+    const chatModalClose = document.getElementById('chatModalClose');
+
+    // Trigger on clicking the "Send" button.
+    chatSendButton.addEventListener('click', function() {
+      const prompt = chatSearchInput.value.trim();
+      if (!prompt) return; // Do nothing if input is empty
+
+      // Append the user's message to the modal chat content.
+      appendMessage('user', prompt);
+
+      // Show the chat modal overlay.
+      chatModalOverlay.style.display = 'flex';
+
+      // Fetch remedies from the Django view.
+      fetch("{% url 'get_remedies' %}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({ prompt: prompt })
+      })
+      .then(response => response.json())
+      .then(data => {
+        const botReply = formatResults(data.results);
+        appendMessage('bot', botReply);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        appendMessage('bot', 'Sorry, an error occurred.');
+      });
+
+      // Clear input after sending.
+      chatSearchInput.value = '';
+    });
+
+    // Append a message (either from user or bot) to the modal content.
+    function appendMessage(sender, message) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-message ${sender}`;
+      msgDiv.innerHTML = message;
+      chatModalContent.appendChild(msgDiv);
+      chatModalContent.scrollTop = chatModalContent.scrollHeight;
+    }
+
+    // Format the results from the Django view into an HTML string.
+    function formatResults(results) {
+      let output = "";
+      if (Object.keys(results).length === 0) {
+        output = "<p>No remedies found for the provided prompt.</p>";
+      } else {
+        for (let disease in results) {
+          output += `<p><strong>${disease.charAt(0).toUpperCase() + disease.slice(1)}</strong></p>`;
+          results[disease].forEach(remedy => {
+            output += `<p><em>Remedy:</em> ${remedy[0]}<br><em>Details:</em> ${remedy[1]}</p>`;
+          });
+        }
+      }
+      return output;
+    }
+
+    // Close the chat modal when the close icon is clicked.
+    chatModalClose.addEventListener('click', function() {
+      chatModalOverlay.style.display = 'none';
+      // Optionally clear the conversation for a fresh start.
+      chatModalContent.innerHTML = "";
+    });
+
+    // Helper function to get CSRF token.
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  </script>
+</body>
+</html>

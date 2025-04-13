@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Remedies</title>
+</head>
+<body>
+    <h1>Select a Body Part</h1>
+    <ul>
+        {% for part in body_parts %}
+            <li><a href="{% url 'diseases' part.id %}">{{ part.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

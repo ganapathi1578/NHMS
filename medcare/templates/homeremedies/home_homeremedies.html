@@ -1,0 +1,27 @@
+
+{% extends 'homeremedies/base.html' %}
+
+{% block title %}Home Remedies{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="category-grid">          
+                {% for part in body_parts %}
+                <div class="category-card">
+                    <a href="{% url 'diseases' part.id %}">
+                        <i class="fas fa-heartbeat icon"></i>
+                        <h3>{{ part.name }}</h3>
+                        <p>Boost your overall well-being with natural remedies.</p>
+                    </a>
+                </div>
+                {% endfor %}
+          </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+</body>
+</html>

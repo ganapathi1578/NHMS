@@ -1,0 +1,20 @@
+{% extends 'homeremedies/base.html' %}
+
+{% block title %}Home Remedies{% endblock %}
+
+{% block content %}
+
+        <div class="container">
+            <div class="category-grid">          
+                {% for disease in diseases %}
+                    <div class="category-card">
+                        <a href="{% url 'remedies' disease.id %}">
+                            <h3>{{ disease.name }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+
+{% endblock %}

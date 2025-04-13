@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Health Management System</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVBAR START -->
+    <nav class="navbar">
+        <div class="brand">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+            <span class="brand-name">NextGen Health Management System</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+            <li><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+            <li><a href="{% url 'home_diseaseprediction' %}" class="nav-link">AI Prediction</a></li>
+            <li><a href="{% url 'aboutUs' %}" class="nav-link">About</a></li>
+        </ul>
+        <div class="login-icon">
+            
+                <a href="{% if request.session.user_email %}{% url 'profile' %}{% else %}{% url 'login' %}{% endif %}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Login" class="login-logo">
+                </a>
+        </div>
+    </nav>
+    <!-- NAVBAR END -->
+
+    <!-- HERO SECTION START -->
+    <div class="hero-container">
+        <section class="hero">
+            <div class="hero-content" id="change">
+                <div class="hero-text">
+                    <p class="description" id="para">A crucial step towards your wellness</p>
+                    <p>We provide <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+                </div>
+                <div class="btn">
+                    <a href="{% url 'home_diseaseprediction' %}">Get Started</a>
+                    <i class="fa-solid fa-greater-than"></i>
+                    <i class="fa-solid fa-greater-than"></i>
+                </div>
+            </div>
+        </section>
+        <div class="left-section">
+            <div class="image-container">
+                <img src="{% static 'images/hero.jpeg' %}" 
+                    alt="Female Doctor" class="doctor-image">
+                <div class="vision-mission">
+                    <div class="vision-box">
+                        <h2><i class="icon fas fa-eye"></i> Our Vision</h2>
+                        <p>To revolutionize healthcare through innovative solutions and patient-centered care.</p>
+                    </div>
+                    <div class="mission-box">
+                        <h2><i class="icon fas fa-bullseye"></i> Our Mission</h2>
+                        <p>Providing exceptional medical services with compassion and cutting-edge technology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="decorative-element circle deco1">
+            <i class="fas fa-heartbeat icon"></i>
+        </div>
+        <!-- <div class="decorative-element triangle deco2">
+            <i class="fas fa-dna icon"></i>
+        </div> -->
+        <div class="decorative-element hexagon deco3">
+            <i class="fas fa-microscope icon"></i>
+        </div>
+        <!-- <div class="decorative-element circle deco4">
+            <i class="fas fa-ambulance icon"></i>
+        </div> -->
+        <div class="decorative-element square deco5">
+            <i class="fas fa-hospital icon"></i>
+        </div>
+        <!-- <div class="decorative-element triangle deco6">
+            <i class="fas fa-prescription-bottle icon"></i>
+        </div> -->
+    </div>
+
+
+    </div>
+    <!-- HERO SECTION END -->
+
+<!-- FEATURE SECTION START -->
+<section class="feature-section">
+    <div class="feature-container">
+        <div class="feature">
+            <i class="fa-solid fa-stethoscope feature-icon"></i>
+            <h3>Accurate Diagnosis</h3>
+            <p>Our AI-powered tools provide precise and reliable health predictions.</p>
+        </div>
+        <div class="feature">
+            <i class="fa-solid fa-heart-pulse feature-icon"></i>
+            <h3>Personalized Care</h3>
+            <p>Tailored health recommendations based on your unique needs.</p>
+        </div>
+        <div class="feature">
+            <i class="fa-solid fa-clock feature-icon"></i>
+            <h3>24/7 Support</h3>
+            <p>Access our services anytime, anywhere for continuous care.</p>
+        </div>
+    </div>
+</section> <hr>
+<!-- FEATURE SECTION END -->
+
+
+
+    <!-- SERVICES SECTION -->
+    <section class="all_cards">
+        <div class="card">
+            <div class="card_image">
+                <img src="{% static 'images/card1_image.jpg' %}" alt="Home Remedies">
+            </div>
+            <div class="card_content">
+                <h4>Home Remedies</h4>
+                <p>Discover effective and simple solutions for common health concerns.</p>
+            </div>
+            <div class="card_btn">
+                <a href="{% url 'home_homeremedies' %}">Get Started</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card_image">
+                <img src="{% static 'images/card2_image.jpg' %}" alt="AI Prediction">
+            </div>
+            <div class="card_content">
+                <h4>AI Disease Prediction</h4>
+                <p>Leverage AI-powered diagnostics for early disease detection.</p>
+            </div>
+            <div class="card_btn">
+                <a href="{% url 'home_diseaseprediction' %}">Get Started</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card_image">
+                <img src="{% static 'images/card3_image.jpg' %}" alt="Organ Delivery">
+            </div>
+            <div class="card_content">
+                <h4>Organ Delivery</h4>
+                <p>Connecting hospitals and donors for life-saving transplants.</p>
+            </div>
+            <div class="card_btn">
+                <a href="{% url 'home_organavailability' %}">Get Started</a>
+            </div>
+        </div>
+    </section>
+    <!-- SERVICES SECTION END -->
+
+    <!-- FOOTER START -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>NextGen Health Management System</h3>
+                <p>Empowering Health Through Innovation</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'home_diseaseprediction' %}">AI Prediction</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 NextGen Health Management System. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="https://kit.fontawesome.com/ea22784fe1.js" crossorigin="anonymous"></script>
+</body>
+</html>
